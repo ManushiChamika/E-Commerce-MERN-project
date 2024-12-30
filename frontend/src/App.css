@@ -139,6 +139,10 @@ nav {
 .header__content {
   max-width: 600px;
   margin-left: auto;
+  border: var(--primary-color) solid 0.5px;
+  margin: 20px 2px 0px 40px;
+  padding: 40px;
+  border-radius: 0 0 15px 15px;
 }
 
 .header__content h4 {
@@ -183,15 +187,23 @@ nav {
 
 .categories__card {
   text-align: center;
+  
 }
 
 .categories__card img {
-  max-width: 100px;
+  max-width: 170px;
   margin: auto;
   margin-bottom: 1rem;
+  margin-left: auto;
+  margin-right: auto;
   border: 5px solid var(--white);
   border-radius: 100%;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  padding: auto;
+  align-items: center;
+  justify-content: center;
+  border: var(--primary-color) solid 1.5px ;
+  padding: 15px;
 }
 
 .categories__card h4 {
@@ -205,11 +217,14 @@ nav {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
+  
 }
 
 .hero__card {
   position: relative;
   box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.1);
+  border: #e0b49a solid 2.5px;
+  border-radius: 15px;
 }
 
 .hero__content {
@@ -239,7 +254,7 @@ nav {
 }
 
 .hero__card img {
-  border-radius: 5px;
+  border-radius: 15px;
 }
 
 .product__grid {
