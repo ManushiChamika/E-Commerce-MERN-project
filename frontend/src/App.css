@@ -267,8 +267,13 @@ nav {
 
 .product__card__content {
   text-align: center;
-  padding: 1rem;
+  border: var(--primary-color) solid 0.1px;
+  border-radius: 0 0 15px 15px;
+  padding: 0px 0 20px 0;
+  margin: 30px 20px 20px 0;
+  background: linear-gradient(to top right, #eee1e8 50%, white 50%);
 }
+
 
 .product__rating {
   margin-bottom: 5px;
