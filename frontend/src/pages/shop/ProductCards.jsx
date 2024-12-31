@@ -17,7 +17,7 @@ const ProductCards = ({ products = [] }) => { // Provide default empty array
                         <div >
                             <h4>{product.name}</h4>
                             <p>${product.price} {product.oldPrice ? <s>${product?.oldPrice}</s> : null}</p>
-
+                            
                         </div>
                         <div className='hover:block'>
                             <button>
