@@ -277,8 +277,9 @@ nav {
 
 .product__rating {
   margin-bottom: 5px;
-  font-size: 0.8rem;
+  font-size: 1.3rem;
   color: goldenrod;
+  padding: 7px;
 }
 
 .product__card__content h4 {

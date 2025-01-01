@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import RatingStars from '../../components/RatingStars'
 
 const ProductCards = ({ products = [] }) => { // Provide default empty array
     console.log(products)
@@ -14,14 +15,14 @@ const ProductCards = ({ products = [] }) => { // Provide default empty array
                             </Link>
                         </div>
                         {/* product description */}
-                        <div >
+                        <div>
                             <h4>{product.name}</h4>
                             <p>${product.price} {product.oldPrice ? <s>${product?.oldPrice}</s> : null}</p>
-                            
+                            <RatingStars rating = {product.rating}/>
                         </div>
                         <div className='hover:block'>
                             <button>
-                                <i class="ri-shopping-cart-line bg-primary text-white hover:bg-primary-dark p-2 m-7"></i>
+                                <i className="ri-shopping-cart-line bg-primary text-white hover:bg-primary-dark p-2 m-7"></i>
                             </button>
                         </div>
                         
