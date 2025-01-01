@@ -4,6 +4,7 @@ import Categories from './Categories'
 import HeroSection from './HeroSection'
 import TrendingProducts from '../shop/TrendingProducts'
 import ProductCards from '../shop/ProductCards'
+import DealsSection from './DealsSection'
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
       <HeroSection/>
       <TrendingProducts/>
       <ProductCards/>
+      <DealsSection/>
     </>
   )
 }
