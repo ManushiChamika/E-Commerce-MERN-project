@@ -302,6 +302,9 @@ nav {
 
 .product__btn {
   text-align: center;
+  padding: 30px;
+  margin-top: 20px;
+  margin-bottom: 30px;
 }
 
 .deals__container {
@@ -548,7 +551,7 @@ nav {
   }
 
   .deals__image {
-    min-height: 300px;
+    min-height: 500px;
     grid-area: 2/1/3/2;
   }
 

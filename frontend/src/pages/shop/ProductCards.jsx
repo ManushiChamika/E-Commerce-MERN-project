@@ -21,7 +21,7 @@ const ProductCards = ({ products = [] }) => { // Provide default empty array
                             <p>${product.price} {product.oldPrice ? <s>${product?.oldPrice}</s> : null}</p>
                             <RatingStars rating = {product.rating}/>
                         </div>
-                        <div className='hover:block'>
+                        <div className='hover:block m-78'>
                             <button>
                                 <i className="ri-shopping-cart-line bg-primary text-white hover:bg-primary-dark p-2 m-7"></i>
                             </button>

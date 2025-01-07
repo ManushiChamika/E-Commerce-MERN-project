@@ -9,8 +9,8 @@ const DealsSection = () => {
       <div className='deals__content'>
         <h5> Get up to 20% discount</h5>
         <h4>Deals of the month</h4>
-        <p>EzyShopper is your one-stop shop for unbeatable deals! Enjoy up to 20% off on top products with our "Deals of the Month." From gadgets to fashion, find everything you need at the best prices. Shop smart, shop EzyShopper!</p>
-        <p>~ Enjoy your shopping! ~</p>
+        <p>Shop smart with EzyShopper—up to 20% off on top products. Don’t miss out!</p>
+
         <div className='deals__countdown flex-wrap'>
           <div className='deals__countdown__card'>
             <h4>14</h4>
