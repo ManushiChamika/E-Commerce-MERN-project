@@ -15,7 +15,8 @@ const TrendingProducts = () => {
         <p className='section__subheader mb-12'>Discover the latest and most popular products, from innovative gadgets to stylish accessories, all in one place at ezyShopper!</p>
     
         {/* products card */}
-        <ProductCards products = {products.slice(0,visibleProducts)}/>
+        <ProductCards products
+         = {products.slice(0,visibleProducts)}/>
 
         {/* load more products */}
         <div className='product__btn'>
