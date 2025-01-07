@@ -309,7 +309,7 @@ nav {
 
 .deals__container {
   background-color: var(--primary-color-light);
-  border-radius: 1rem;
+  border-radius: 0 0 1rem 1rem; 
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
@@ -414,8 +414,9 @@ nav {
 }
 
 .blog__container {
-  background-color: var(--extra-light);
+  background-color: #E8E7E2;
   border-radius: 1rem;
+  padding: 30px 50px 30px 50px;
 }
 
 .blog__grid {

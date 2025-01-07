@@ -7,6 +7,7 @@ import ProductCards from '../shop/ProductCards'
 import DealsSection from './DealsSection'
 import PromoBanner from './PromoBanner'
 import Blogs from '../blogs/blogs'
+import Footer from '../../components/Footer'
 
 const Home = () => {
   return (
@@ -19,6 +20,7 @@ const Home = () => {
       <DealsSection/>
       <PromoBanner/>
       <Blogs/>
+      <Footer/>
     </>
   )
 }
