@@ -43,15 +43,19 @@ const Footer = () => {
         </div>
         <div className='footer__col'>
             <h4>INSTAGRAM</h4>
-            <div className='instagram__grid'></div>
-            <img src={intaImg1} alt="" />
-            <img src={intaImg2} alt="" />
-            <img src={intaImg3} alt="" />
-            <img src={intaImg4} alt="" />
-            <img src={intaImg5} alt="" />
-            <img src={intaImg6} alt="" />
+            <div className='instagram__grid'>
+                <img src={intaImg1} alt="" />
+                <img src={intaImg2} alt="" />
+                <img src={intaImg3} alt="" />
+                <img src={intaImg4} alt="" />
+                <img src={intaImg5} alt="" />
+                <img src={intaImg6} alt="" />
+            </div>
         </div>
     </footer>
+    <div className='footer__bar'>
+        copyright &copy; 2025 . EzyShopper . All rights reserved
+    </div>
     </>
     
   )
