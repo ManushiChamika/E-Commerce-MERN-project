@@ -16,6 +16,7 @@ const ProductCards = ({ products = [] }) => { // Provide default empty array
                         </div>
                         {/* product description */}
                         <div>
+                            {/* put new price over old price if there is a discount */}
                             <h4>{product.name}</h4>
                             <p>${product.price} {product.oldPrice ? <s>${product?.oldPrice}</s> : null}</p>
                             <RatingStars rating = {product.rating}/>
