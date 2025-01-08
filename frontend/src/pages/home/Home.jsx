@@ -9,6 +9,7 @@ import PromoBanner from './PromoBanner'
 import Blogs from '../blogs/blogs'
 
 const Home = () => {
+  
   return (
     <>
       <Banner/>
