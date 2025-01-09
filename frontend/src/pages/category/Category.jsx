@@ -1,3 +1,5 @@
+//filtering out products according to category
+
 import React, { useEffect } from 'react'
 import {useParams} from 'react-router-dom'
 import { useState } from 'react';
@@ -15,6 +17,11 @@ const Category = () => {
         
         setFilteredProducts(filtered)
     },[categoryName])
+
+    //to load page at the top 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    })
 
   return (
     <>

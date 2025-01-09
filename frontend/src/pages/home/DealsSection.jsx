@@ -9,7 +9,7 @@ const DealsSection = () => {
       <div className='deals__content'>
         <h5> Get up to 20% discount</h5>
         <h4>Deals of the month</h4>
-        <p>Shop smart with EzyShopper—up to 20% off on top products. Don’t miss out!</p>
+        <p>~ Shop smart with EzyShopper. Don’t miss out! ~</p>
 
         <div className='deals__countdown flex-wrap'>
           <div className='deals__countdown__card'>
