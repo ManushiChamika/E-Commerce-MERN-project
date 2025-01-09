@@ -7,7 +7,7 @@ const DealsSection = () => {
         <img src={dealsImg} alt="" />
       </div>
       <div className='deals__content'>
-        <h5> Get up to 20% discount</h5>
+        <h5> Get up to 20% discount!</h5>
         <h4>Deals of the month</h4>
         <p>~ Shop smart with EzyShopper. Don’t miss out! ~</p>
 

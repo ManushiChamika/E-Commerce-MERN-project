@@ -27,12 +27,6 @@
   border-radius: 0 0 1rem 1rem;
 }
 
-/* .section__container p{
-  font-size: 1.2rem;
-  color: rgb(116, 111, 111);
-  text-align: center;
-} */
-
 .section__header {
   margin-bottom: 1rem;
   font-size: 2rem;
@@ -282,9 +276,14 @@ nav {
   border-radius: 0 0 15px 15px;
   padding: 0px 0 20px 0;
   margin: 30px 20px 20px 0;
-  background: linear-gradient(to top right, #eee1e8 50%, white 50%);
+  background: linear-gradient(to top right, #f1e6ec 50%, white 50%);
 }
 
+.product__container{
+  background: linear-gradient(to bottom, var(--primary-color-light), #f3e9eb, #ffffff);
+  border-radius: 10px 10px 0px 0px;
+
+}
 
 .product__rating {
   margin-bottom: 5px;
@@ -319,7 +318,7 @@ nav {
 }
 
 .deals__container {
-  background-color: var(--primary-color-light);
+  background: linear-gradient(to top, var(--primary-color-dark), #ffc0cb, #ffffff);
   border-radius: 0 0 1rem 1rem; 
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -343,13 +342,19 @@ nav {
 .deals__content {
   max-width: 600px;
   margin-right: auto;
+  border: rgb(245, 226, 226) solid 1px;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: #f4e5ec;
+
 }
 
 .deals__content h5 {
   margin-bottom: 1rem;
-  font-size: 1rem;
+  font-size: 1.3rem;
   font-weight: 500;
   color: var(--primary-color);
+  text-transform: capitalize;
 }
 
 .deals__content h4 {
