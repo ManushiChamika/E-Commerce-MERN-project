@@ -24,6 +24,13 @@
   max-width: var(--max-width-1400);
   margin: auto;
   padding: 5rem 1rem;
+  border-radius: 0 0 1rem 1rem;
+}
+
+.section__container p{
+  font-size: 1.2rem;
+  color: rgb(116, 111, 111);
+  text-align: center;
 }
 
 .section__header {
