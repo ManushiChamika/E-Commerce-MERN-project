@@ -3,10 +3,11 @@ import { useState } from 'react'
 import productsData from '../../data/products'
 import { useEffect } from 'react'
 import ProductCards from './ProductCards'
+import ShopFiltering from './ShopFiltering'
 
 const filter = {
     categories: ['all', 'accessories', 'dress', 'jewelry', 'cosmetics'],
-    colors: ['all', 'black', 'white', 'red', 'blue', 'yellow', 'green', 'pink', 'purple'],
+    colors: ['all', 'black', 'red', 'Gold', 'Blue', 'Silver', 'Beige', 'Green'],
     priceRanges:[
         {label : 'Under $50', min: 0, max: 50},
         {label : '$50 - $100', min: 50, max: 100},
@@ -33,9 +34,12 @@ const ShopPage = () => {
         }
 
         //filter by color
-        if(filtersState.color && filtersState.color !== 'all'){
-            filteredProducts = filteredProducts.filter(product => product.color === filtersState.color);
+        if (filtersState.color && filtersState.color !== 'all') {
+            filteredProducts = filteredProducts.filter(
+                product => product.color.toLowerCase() === filtersState.color.toLowerCase()
+            );
         }
+        
 
         //filter by price range
         if(filtersState.priceRange){
@@ -68,7 +72,12 @@ const ShopPage = () => {
             <section className='section__container'>
                 <div className='flex flex-col md:flex-row md:gap-12 gap-8'>
                     {/* left side */}
-                    <div>Shop filtering</div>
+                    <ShopFiltering 
+                        filter ={filter} 
+                        filtersState={filtersState} 
+                        setFiltersState={setFiltersState}
+                        clearFilters={clearFilters}
+                    />
 
                     {/* right side */}
                     <div>
