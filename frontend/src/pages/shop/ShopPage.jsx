@@ -1,3 +1,5 @@
+//shop page relevant to filtering page
+
 import React from 'react'
 import { useState } from 'react'
 import productsData from '../../data/products'

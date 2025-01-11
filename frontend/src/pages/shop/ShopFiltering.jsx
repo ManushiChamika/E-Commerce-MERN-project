@@ -1,3 +1,4 @@
+//filtering page for shop
 import React from 'react';
 
 const ShopFiltering = ({ filter, filtersState, setFiltersState, clearFilters }) => {
