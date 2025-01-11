@@ -40,11 +40,15 @@ const SingleProduct = () => {
 
                     <button className='mt-5 px-6 py-3 bg-primary text-white rounded-md hover:bg-primary-dark'>
                         Add to cart
-                    </button> 
-                    
+                    </button>                    
                 </div>
             </div>
         </div>
+    </section>
+
+    {/* display reviews with API*/}
+    <section className='section__container mt-8'>
+        Reviews Here
     </section>
     </>
   )
