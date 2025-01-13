@@ -36,7 +36,11 @@ const SingleProduct = () => {
                 <div>
                     <p className='mb-3'><strong>Category:</strong> accessories</p>
                     <p><strong>Color:</strong> beige</p>
-                    <p className='flex gap-0.5 items-center'><strong>Rating: </strong><RatingStars rating={"4"}/></p>
+                    <div className='flex gap-0.5 items-center'>
+                        <strong>Rating: </strong>
+                        <RatingStars rating={"4"}/>
+                    </div>
+
 
                     <button className='mt-5 px-6 py-3 bg-primary text-white rounded-md hover:bg-primary-dark'>
                         Add to cart

@@ -282,7 +282,7 @@ nav {
 .product__container{
   background: linear-gradient(to bottom, var(--primary-color-light), #f3e9eb, #ffffff);
   border-radius: 10px 10px 0px 0px;
-
+  padding: 40px 32px 30px 50px;
 }
 
 .product__rating {
