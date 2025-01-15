@@ -1,9 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import RatingStars from '../../components/RatingStars'
+import { useDispatch } from 'react-redux'
+import { addToCart } from '../../redux/features/cart/cartSlice'
 
 const ProductCards = ({ products = [] }) => { // Provide default empty array
-    console.log(products)
+    const dispatch = useDispatch();
+
+    const handleAddToCart = (product) => {
+        dispatch(addToCart(product))
+    }
+
+
     return (
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8'>
             {
@@ -21,8 +29,12 @@ const ProductCards = ({ products = [] }) => { // Provide default empty array
                             <p>${product.price} {product.oldPrice ? <s>${product?.oldPrice}</s> : null}</p>
                             <RatingStars rating = {product.rating}/>
                         </div>
-                        <div className='hover:block m-78'>
-                            <button>
+                        <div className='hover:block m-78  '>
+                            <button
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                handleAddToCart(product)
+                            }}>
                                 <i className="ri-shopping-cart-line bg-primary text-white hover:bg-primary-dark p-2 m-7"></i>
                             </button>
                         </div>
