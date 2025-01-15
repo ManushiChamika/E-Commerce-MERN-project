@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 const Navbar = () => {
     //using redux to get the products in the cart
     const products = useSelector((state) => state.cart.products);
-    console.log (products)
+    console.log(products);
 
 
   return (
