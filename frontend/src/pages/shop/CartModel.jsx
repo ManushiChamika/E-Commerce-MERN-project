@@ -2,12 +2,13 @@ import React from 'react'
 
 const CartModel = ({products, isOpen, onClose}) => {
   return (
+
     //styling opacity for cart 
     <div className={`fixed z-[1000] inset-0 bg-black bg-opacity-80 transition-opacity ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`} 
      style={{transition: "opacity 300ms"}}
     >
-        //cart model white background
-        <div className={`fixed right-0 top-0 md:w-1/3 w-full bg-white h-full overflow-y-auto transition-transform ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
+        {/* cart model white background */}
+        <div className={`fixed right-0 top-0 md:w-2/4 w-full bg-white h-full overflow-y-auto transition-transform ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
         style={{transition: "transform 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94)"}}
         >
             <div className='p-4 mt-4'>               
@@ -18,7 +19,10 @@ const CartModel = ({products, isOpen, onClose}) => {
                     onClick={() => onClose()}
                     className='text-gray-600 hover:text-gray-900'><i className="ri-xrp-line bg-black p-1 text-white"></i></button>
                 </div>
-                <div>
+
+                {/* cart details */}
+              
+                <div className='class-items' >
                     {
                         products.length === 0 ? (<div>your cart is empty</div>) : (
                             products.map((item, index) => (
@@ -29,22 +33,29 @@ const CartModel = ({products, isOpen, onClose}) => {
                                         >0{index + 1}</span>
                                         <img src={item.image} alt="" className='size-20 object-cover mr-4 border rounded-md'/>
                                         <div>
-                                            <h5 className='text-lg font-medium'>{item.name}</h5>
+                                        <h5 className="text-lg font-medium sm:text-base md:text-sm lg:text-xl">{item.name}</h5>
                                             <p className='text-gray-600 text-sm'>${Number(item.price).toFixed(2)}</p>
                                         </div>
-                                        <div className='flex flex-row md:justify-start justify-end item-center mt-2'>
+                                        <div 
+                                            className="flex flex-row md:justify-start justify-end items-center mt-2 responsive-buttons">
                                             <button 
-                                            className='size-6 flex-items-center justify-center px-1.5 rounded-full bg-gray-200 text-gray-700 hover:bg-primary hover:text-white ml-8'
-                                            >-</button>
-                                            <span className='px-2 text-center mx-1'>{item.quantity}</span>
+                                                className="size-6 flex items-center justify-center px-1.5 sm:px-1 rounded-full bg-gray-200 text-gray-700 hover:bg-primary hover:text-white sm:text-sm ml-8 sm:ml-4">
+                                                -
+                                            </button>
+                                            <span 
+                                                className="px-2 sm:px-1 text-center mx-1 sm:mx-0 sm:text-sm">
+                                                {item.quantity}
+                                            </span>
                                             <button
-                                            className='size-6 flex-items-center justify-center px-1.5 rounded-full bg-gray-200 text-gray-700 hover:bg-primary hover:text-white'
-                                            >+</button>
+                                                className="size-6 flex items-center justify-center px-1.5 sm:px-1 rounded-full bg-gray-200 text-gray-700 hover:bg-primary hover:text-white sm:text-sm">
+                                                +
+                                            </button>
 
                                             <div className='ml-5'>
                                                 <button
-                                                className='text-red-500 hover:text-red-800 mr-4'
-                                                >Remove</button>
+                                                    className='text-red-500 hover:text-red-800 mr-4'>
+                                                    Remove
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -54,8 +65,14 @@ const CartModel = ({products, isOpen, onClose}) => {
                         
                     }
                 </div>
-            </div>
 
+                   {/* calculation */}
+                   {
+                        products.length > 0 && ()
+                   }
+                    
+
+            </div>
         </div>
     </div>
   )
