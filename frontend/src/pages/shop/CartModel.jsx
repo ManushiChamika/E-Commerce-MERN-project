@@ -1,4 +1,5 @@
 import React from 'react'
+import OrderSummary from './OrderSummary'
 
 const CartModel = ({products, isOpen, onClose}) => {
   return (
@@ -68,7 +69,9 @@ const CartModel = ({products, isOpen, onClose}) => {
 
                    {/* calculation */}
                    {
-                        products.length > 0 && ()
+                        products.length > 0 && (
+                            <OrderSummary/>
+                        )
                    }
                     
 
