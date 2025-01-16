@@ -1,7 +1,17 @@
 import React from 'react'
 import OrderSummary from './OrderSummary'
+import { useDispatch } from 'react-redux'
+import { updateQuantity } from '../../redux/features/cart/cartSlice'
 
 const CartModel = ({products, isOpen, onClose}) => {
+
+  const dispatch = useDispatch();
+
+  const handleQuantity = (type, id) => {
+    const payload= {type, id}
+    dispatch(updateQuantity(payload))
+  }
+
   return (
 
     //styling opacity for cart 
@@ -40,6 +50,9 @@ const CartModel = ({products, isOpen, onClose}) => {
                                         <div 
                                             className="flex flex-row md:justify-start justify-end items-center mt-2 responsive-buttons">
                                             <button 
+                                                onClick={
+                                                    () => handleQuantity('decrement', item._id)
+                                                }
                                                 className="size-6 flex items-center justify-center px-1.5 sm:px-1 rounded-full bg-gray-200 text-gray-700 hover:bg-primary hover:text-white sm:text-sm ml-8 sm:ml-4">
                                                 -
                                             </button>
@@ -48,6 +61,9 @@ const CartModel = ({products, isOpen, onClose}) => {
                                                 {item.quantity}
                                             </span>
                                             <button
+                                                onClick={
+                                                    () => handleQuantity('increment', item._id)
+                                                }
                                                 className="size-6 flex items-center justify-center px-1.5 sm:px-1 rounded-full bg-gray-200 text-gray-700 hover:bg-primary hover:text-white sm:text-sm">
                                                 +
                                             </button>

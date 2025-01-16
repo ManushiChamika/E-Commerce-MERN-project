@@ -15,7 +15,7 @@ const cartSlice = createSlice({
     // reducers
     reducers:{
         addToCart : (state, action) => {
-            const isExist = state.products.find((product) => product.id === action.payload.id);
+            const isExist = state.products.find((product) => product._id === action.payload.id);
         
             if(!isExist){
                 state.products.push({...action.payload, quantity: 1})
@@ -29,23 +29,26 @@ const cartSlice = createSlice({
             state.grandTotal = setGrandTotal(state);
         },
         updateQuantity: (state, action) => {
-            const products = state.products.map((product) => {
-                if(product.id === action.payload.id){
-                    if(action.payload.type === 'increment'){
-                        product.quantity += 1;
-                    }else if(action.payload.type === 'decrement'){
-                        if(product.quantity > 1){
-                            product.quantity -= 1;
+            state.products = state.products.map((product) => {
+                if (product._id === action.payload.id) {
+                    if (action.payload.type === 'increment') {
+                        product.quantity += 1; // Increment quantity
+                    } else if (action.payload.type === 'decrement') {
+                        if (product.quantity > 1) {
+                            product.quantity -= 1; // Decrement quantity only if > 1
                         }
-                        return product;                
                     }
                 }
+                return product; // Return the product to ensure the map works
             });
+        
+            // Recalculate totals after updating quantities
             state.selectedItems = setSelectedItems(state);
             state.totalPrice = setTotalPrice(state);
             state.tax = setTax(state);
             state.grandTotal = setGrandTotal(state);
         },
+        
     }
 
 })
@@ -66,5 +69,6 @@ export const setGrandTotal = (state) => {
 };
 
 // export all actions
-export const {addToCart} = cartSlice.actions;
+export const {addToCart, updateQuantity} = cartSlice.actions;
 export default cartSlice.reducer;
+
