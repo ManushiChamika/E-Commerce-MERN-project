@@ -42,6 +42,9 @@ const cartSlice = createSlice({
                 }
             });
             state.selectedItems = setSelectedItems(state);
+            state.totalPrice = setTotalPrice(state);
+            state.tax = setTax(state);
+            state.grandTotal = setGrandTotal(state);
         },
     }
 
