@@ -29,10 +29,10 @@ const Login = () => {
             <section
                 className="relative z-10 max-w-sm border shadow bg-white bg-opacity-80 mx-auto p-8 rounded-md"
                 style={{
-                    backgroundColor: 'rgba(255, 255, 255, 0.68)', // This makes the background translucent
+                    backgroundColor: 'rgba(255, 255, 255, 0.72)', // This makes the background translucent
                 }}
             >
-                <h2 className="text-2xl font-semibold pt-5 text-center">Please Login</h2>
+                <h2 className="text-2xl font-semibold pt-5 text-center text-gray-800 italic underline">Please Login</h2>
                 <form onSubmit={handleLogin} className="space-y-5 max-w-sm mx-auto pt-8">
                     <input
                         type="email"
