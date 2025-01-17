@@ -15,7 +15,7 @@ const cartSlice = createSlice({
     // reducers
     reducers:{
         addToCart : (state, action) => {
-            const isExist = state.products.find((product) => product._id === action.payload.id);
+            const isExist = state.products.find((product) => product._id === action.payload._id);
         
             if(!isExist){
                 state.products.push({...action.payload, quantity: 1})
@@ -48,6 +48,13 @@ const cartSlice = createSlice({
             state.tax = setTax(state);
             state.grandTotal = setGrandTotal(state);
         },
+        removeFromCart: (state, action) => {
+            state.products = state.products.filter((product) => product._id !== action.payload.id);
+            state.selectedItems = setSelectedItems(state);
+            state.totalPrice = setTotalPrice(state);
+            state.tax = setTax(state);
+            state.grandTotal = setGrandTotal(state);
+        }
         
     }
 
@@ -69,6 +76,6 @@ export const setGrandTotal = (state) => {
 };
 
 // export all actions
-export const {addToCart, updateQuantity} = cartSlice.actions;
+export const {addToCart, updateQuantity, removeFromCart} = cartSlice.actions;
 export default cartSlice.reducer;
 

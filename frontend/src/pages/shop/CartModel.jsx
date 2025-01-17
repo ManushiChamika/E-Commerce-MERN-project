@@ -1,7 +1,8 @@
 import React from 'react'
 import OrderSummary from './OrderSummary'
 import { useDispatch } from 'react-redux'
-import { updateQuantity } from '../../redux/features/cart/cartSlice'
+import { removeFromCart, updateQuantity } from '../../redux/features/cart/cartSlice'
+
 
 const CartModel = ({products, isOpen, onClose}) => {
 
@@ -10,6 +11,11 @@ const CartModel = ({products, isOpen, onClose}) => {
   const handleQuantity = (type, id) => {
     const payload= {type, id}
     dispatch(updateQuantity(payload))
+  }
+
+  const handleRemove =(e, id) => {
+    e.preventDefault();
+    dispatch(removeFromCart({id}))
   }
 
   return (
@@ -33,55 +39,42 @@ const CartModel = ({products, isOpen, onClose}) => {
 
                 {/* cart details */}
               
-                <div className='class-items' >
-                    {
-                        products.length === 0 ? (<div>your cart is empty</div>) : (
-                            products.map((item, index) => (
-                                // take image and p next to the numbered items
-                                <div key={index} className='flex flex-col md:flex-row md:items-center md:justify-between shadow-md md:p-5 p-2 mb-4'>
-                                   <div className='flex items-center'>
-                                        <span className="mr-4 px-1 bg-primary text-white rounded-full flex items-center justify-center"
-                                        >0{index + 1}</span>
-                                        <img src={item.image} alt="" className='size-20 object-cover mr-4 border rounded-md'/>
-                                        <div>
-                                        <h5 className="text-lg font-medium sm:text-base md:text-sm lg:text-xl">{item.name}</h5>
-                                            <p className='text-gray-600 text-sm'>${Number(item.price).toFixed(2)}</p>
-                                        </div>
-                                        <div 
-                                            className="flex flex-row md:justify-start justify-end items-center mt-2 responsive-buttons">
-                                            <button 
-                                                onClick={
-                                                    () => handleQuantity('decrement', item._id)
-                                                }
-                                                className="size-6 flex items-center justify-center px-1.5 sm:px-1 rounded-full bg-gray-200 text-gray-700 hover:bg-primary hover:text-white sm:text-sm ml-8 sm:ml-4">
-                                                -
-                                            </button>
-                                            <span 
-                                                className="px-2 sm:px-1 text-center mx-1 sm:mx-0 sm:text-sm">
-                                                {item.quantity}
-                                            </span>
-                                            <button
-                                                onClick={
-                                                    () => handleQuantity('increment', item._id)
-                                                }
-                                                className="size-6 flex items-center justify-center px-1.5 sm:px-1 rounded-full bg-gray-200 text-gray-700 hover:bg-primary hover:text-white sm:text-sm">
-                                                +
-                                            </button>
+                <div className='cart-items'>
+                        {
+                            products.length === 0 ? (<div>Your cart is empty</div>) : (
+                                products.map((item, index) => (
+                                    <div key={index} className='flex flex-col md:flex-row md:items-center md:justify-between shadow-md md:p-5 p-2 mb-4'>
+                                        <div className='flex items-center'>
+                                            <span className='mr-4 px-1 bg-primary text-white rounded-full'>0{index + 1}</span>
+                                            <img src={item.image} alt="" className='size-12 object-cover mr-4' />
+                                            <div>
+                                                <h5 className='text-lg font-medium'>{item.name}</h5>
+                                                <p className='text-gray-600 text-sm'>${Number(item.price).toFixed(2)}</p>
+                                            </div>
 
-                                            <div className='ml-5'>
+                                            <div className='flex flex-row md:justify-start justify-end items-center mt-2'>
                                                 <button
-                                                    className='text-red-500 hover:text-red-800 mr-4'>
-                                                    Remove
-                                                </button>
+                                                    onClick={() => handleQuantity('decrement', item._id)}
+                                                    className='size-6 flex items-center justify-center px-1.5 rounded-full bg-gray-200 text-gray-700 hover:bg-primary hover:text-white ml-8'
+                                                >-</button>
+                                                <span className='px-2 text-center mx-1'>{item.quantity}</span>
+                                                <button
+                                                    onClick={() => handleQuantity('increment', item._id)}
+                                                    className='size-6 flex items-center justify-center px-1.5 rounded-full bg-gray-200 text-gray-700 hover:bg-primary hover:text-white'
+                                                >+</button>
+                                                <div className='ml-5'>
+                                                    <button
+                                                    onClick={(e) => handleRemove(e, item._id)}
+                                                        className='text-red-500 hover:text-red-800 mr-4'
+                                                    >Remove</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            ))
-                        )
-                        
-                    }
-                </div>
+                                ))
+                            )
+                        }
+                    </div>
 
                    {/* calculation */}
                    {
