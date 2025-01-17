@@ -29,7 +29,7 @@ const ProductCards = ({ products = [] }) => { // Provide default empty array
                             <p>${product.price} {product.oldPrice ? <s>${product?.oldPrice}</s> : null}</p>
                             <RatingStars rating = {product.rating}/>
                         </div>
-                        <div className='hover:block m-78  '>
+                        <div className='hover:block m-78' >
                             <button
                             onClick={(e) => {
                                 e.stopPropagation();

@@ -18,6 +18,7 @@ const CartModel = ({products, isOpen, onClose}) => {
     dispatch(removeFromCart({id}))
   }
 
+  
   return (
 
     //styling opacity for cart 
