@@ -5,6 +5,7 @@ import Category from "../pages/category/Category";
 import Search from "../pages/search/Search";
 import ShopPage from "../pages/shop/ShopPage";
 import SingleProduct from "../pages/shop/productDetails/SingleProduct";
+import Login from "../components/Login";
 
 const router = createBrowserRouter([
     {
@@ -32,7 +33,11 @@ const router = createBrowserRouter([
           element : <SingleProduct/>      
         },
       ],
-    }, 
+    },
+    {
+      path: "/login",
+      element: <Login/>
+    } 
   ]);
 
   export default router;
