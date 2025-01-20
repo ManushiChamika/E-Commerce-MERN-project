@@ -19,12 +19,16 @@ app.use(cors({
     credentials: true
 }))
 
+//all routes
+const authRoutes = require('./src/users/user.route');
+app.use('/api/auth', authRoutes);
+
+
+
 main().then(()=> console.log("mongo db is successfully connected.")).catch(err => console.log(err));
 
 async function main() {
-  await mongoose.connect(process.env.DB_URL);
-
-  
+  await mongoose.connect(process.env.DB_URL); 
 }
 
 app.get('/', (req, res) => {
