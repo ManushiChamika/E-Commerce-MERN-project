@@ -18,4 +18,24 @@ router.post('/register', async(req, res) => {
     }
 })
 
+//login user endpoint
+router.post('/login', async(req, res) => {
+    const {email, password} = req.body;
+    try {
+        const user = await User.findOne({email});
+    if(!user){
+        return res.status(404).send({message: "User not found"});
+    }
+    const isMatch = await user.comparePassword(password);
+    if(!isMatch){
+        return res.status(401).send({message: "Invalid credentials"});
+    }
+    res.status(200).send({message: "User logged in successfully"});
+        
+    } catch (error) {
+        console.log("Error in logged in user", error);
+        res.status(500).send({message:"Error in logged in user"});
+    }
+})
+
 module.exports = router;
