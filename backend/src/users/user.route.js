@@ -30,11 +30,15 @@ router.post('/login', async(req, res) => {
     if(!isMatch){
         return res.status(401).send({message: "Invalid credentials"});
     }
-    res.status(200).send({message: "User logged in successfully"});
+
+    //generating token
+    const token = await generateToken(user._id);
+
+    res.status(200).send({message: "User logged in successfully", user});
         
     } catch (error) {
-        console.log("Error in logged in user", error);
-        res.status(500).send({message:"Error in logged in user"});
+        console.log("Error logged in user", error);
+        res.status(500).send({message:"Error logged in user"});
     }
 })
 
