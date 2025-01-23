@@ -1,23 +1,22 @@
+import jwt from 'jsonwebtoken'; // Use ES module import
+import User from '../users/user.model';
 
-//importing required modules
-const jwt = require('jsonwebtoken');
 const JWT_SECRET = process.env.JWT_SECRET_KEY;
 
 const generateToken = async (userId) => {
-    try{
+    try {
         const user = await User.findById(userId);
-        if(!user){
+        if (!user) {
             throw new Error("User not found");
         }
 
-        //generate token
-        const token = jwt.sign({userId: user._id, role: user.role},  JWT_SECRET, {expiresIn: '1h', })
+        // Generate token
+        const token = jwt.sign({ userId: user._id, role: user.role }, JWT_SECRET, { expiresIn: '1h', });
         return token;
-    }catch(error){
-        
+    } catch (error) {
+        console.error("Error generating token:", error.message);
+        throw error;
     }
-
-
-}
+};
 
 export default generateToken;
