@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('./user.model');
+const { default: generateToken } = require('../middleware/GenerateToken');
 
 
 //register endpoint
@@ -31,8 +32,10 @@ router.post('/login', async(req, res) => {
         return res.status(401).send({message: "Invalid credentials"});
     }
 
-    //generating token
+    //generating token imported from middleware folder
     const token = await generateToken(user._id);
+
+    // res.cookie('token', token, {httpOnly: true});
 
     res.status(200).send({message: "User logged in successfully", user});
         
