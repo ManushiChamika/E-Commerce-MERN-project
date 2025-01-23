@@ -1,5 +1,6 @@
+
 //importing required modules
-const jwt   = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 const JWT_SECRET = process.env.JWT_SECRET_KEY;
 
 const generateToken = async (userId) => {
