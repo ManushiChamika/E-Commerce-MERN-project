@@ -7,7 +7,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
-//middleware setup
+//TODO middleware setup
 app.use(express.json({limit : "25mb"}));
 app.use((express.urlencoded({limit: "25mb"})));
 app.use(cookieParser());
