@@ -1,5 +1,5 @@
-import jwt from 'jsonwebtoken'; // Use ES module import
-import User from '../users/user.model';
+const jwt = require('jsonwebtoken'); // Use ES module import
+const User = require('../users/user.model');
 
 const JWT_SECRET = process.env.JWT_SECRET_KEY;
 
@@ -19,4 +19,4 @@ const generateToken = async (userId) => {
     }
 };
 
-export default generateToken;
+module.exports = generateToken;
