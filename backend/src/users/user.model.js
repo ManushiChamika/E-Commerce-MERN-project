@@ -7,7 +7,7 @@ const userSchema = new Schema({
     password: {type: String, require:true},
     role: {type: String, default: 'user'},
     profileImage: String,
-    bio:{type: String, maxlength: 200},
+    bio:{type: String, maxLength: 200},
     profession: String,
     createdAt : {
         type: Date,
@@ -15,7 +15,7 @@ const userSchema = new Schema({
     }
 })
 
-//hashing password
+// hashing password
 userSchema.pre('save', async function(next){
     const user = this;
 
@@ -25,7 +25,7 @@ userSchema.pre('save', async function(next){
     next();
 })
 
-//match passwords
+// match passwords
 userSchema.methods.comparePassword = function(candidatePassword){
     return bcrypt.compare(candidatePassword, this.password);
 }

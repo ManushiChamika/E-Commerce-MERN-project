@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken'); // Use ES module import
+const jwt = require('jsonwebtoken'); //ES module import
 const User = require('../users/user.model');
 
 const JWT_SECRET = process.env.JWT_SECRET_KEY;

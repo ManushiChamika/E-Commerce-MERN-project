@@ -3,8 +3,9 @@ const express = require('express');
 const router = express.Router();
 const User = require('./user.model');
 const generateToken = require('../middleware/GenerateToken');
+// const verifyToken = require('../middleware/verifyToken');
  
-//register endpoint
+// register endpoint
 router.post('/register', async(req, res) => {
     try{
         const {username, email, password} = req.body;
@@ -18,7 +19,7 @@ router.post('/register', async(req, res) => {
     }
 })
 
-//login user endpoint
+//  login user endpoint
 router.post('/login', async(req, res) => {
     const {email, password} = req.body;
     try {
@@ -31,17 +32,39 @@ router.post('/login', async(req, res) => {
         return res.status(401).send({message: "Invalid credentials"});
     }
 
-    //generating token imported from middleware folder
+    //  generating token imported from middleware folder
     const token = await generateToken(user._id);
+    // console.log("Token", token);
 
-    // res.cookie('token', token, {httpOnly: true});
+    //  set cookie
+    res.cookie('token', token, {
+        httpOnly: true,
+        secure:true,
+        sameSite: 'None',
+    });
 
-    res.status(200).send({message: "User logged in successfully", user});
+    //  send user details
+    res.status(200).send({message: "User logged in successfully", token, user:
+        {
+            _id: user._id,
+            email: user.email,
+            username: user.username,
+            role: user.role,
+            profileImage: user.profileImage,
+            bio: user.bio,
+            profession: user.profession,            
+        }
+    });
         
     } catch (error) {
         console.log("Error logged in user", error);
         res.status(500).send({message:"Error logged in user"});
     }
 })
+
+// // all users endpoint
+// router.get("/users", verifyToken ,async(req, res) => {
+//     res.send({message: "Protected users"})
+// })
 
 module.exports = router;
