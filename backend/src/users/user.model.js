@@ -34,6 +34,5 @@ const User = new model('User', userSchema);
 module.exports = User;
 
 //or
-
 // module.exports = model('User', userSchema);
 
