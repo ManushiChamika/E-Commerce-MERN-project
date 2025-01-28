@@ -10,7 +10,7 @@ const verifyToken = (req, res, next) => {
             return res.status
         }
         const decoded = jwt.verify(token, JWT_SECRET);
-        
+
         if(!decoded){
             return res.status(401).send({message: "Invalid token or not valid"});
         }

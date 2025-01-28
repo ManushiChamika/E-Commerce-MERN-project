@@ -67,7 +67,6 @@ router.post('/login', async(req, res) => {
 //     res.send({message: "Protected users"})
 // })
 
-
 // logout user endpoint
 router.post('/logout' , (req, res) => {
     res.clearCookie('token');
