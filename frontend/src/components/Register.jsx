@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import register from '../assets/login-3_.jpg'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useRegisterUserMutation } from '../redux/features/auth/authApi';
 
 const Register = () => {
 
@@ -9,6 +10,10 @@ const Register = () => {
       const [password, setPassword] = useState('');
       const [username, setUsername] = useState('');
   
+      // TODO dispatch action from redux
+      const [registerUser, {isLoading}] =  useRegisterUserMutation();
+      const navigate = useNavigate();
+
       const handleRegister = async (e) => {
           e.preventDefault();
           const data = {
@@ -16,7 +21,15 @@ const Register = () => {
               email,
               password,
           };
-          console.log(data);
+        //   console.log(data);
+        //TODO dispatch action
+        try {
+            await registerUser(data).unwrap();
+            alert('User registered successfully');
+            navigate('/login');
+        } catch (error) {
+            setMessage('Error registering user');
+        }
       };
   
 
