@@ -1,19 +1,38 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import login from '../assets/login-3_.jpg'
+import { useLoginUserMutation } from '../redux/features/auth/authApi';
+import { useDispatch } from 'react-redux';
 
 const Login = () => {
     const [message, setMessage] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+   
+    // TODO dispatch action from redux
+    const dispatch = useDispatch();
+    const [loginUser, {isLoading, loginLoading}] = useLoginUserMutation();
+    const navigate = useNavigate();
+
+     // handle login
     const handleLogin = async (e) => {
         e.preventDefault();
         const data = {
             email,
             password,
         };
-        console.log(data);
+        
+        //TODO dispatch action
+        try {
+            const response = await loginUser(data).unwrap();
+            // console.log(response);
+            alert('Login successful');
+            //navigate to home page
+            navigate('/');
+        } catch (error) {
+            setMessage('Invalid credentials');
+        }
     };
 
     return (
