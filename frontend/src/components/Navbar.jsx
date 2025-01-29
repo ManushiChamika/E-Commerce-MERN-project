@@ -61,8 +61,10 @@ const Navbar = () => {
             await logoutUser().unwrap();
             dispatch(logout());
             navigate('/');
+            alert('User logged out successfully');
         } catch (error) {
             console.log('Error logging out', error);
+            alert('Error logging out!');
         }
     }
     //--------------------------------------------------
@@ -123,10 +125,10 @@ const Navbar = () => {
                                         </div>
                                     )
                                 }
-                                </>):
-                                (<Link to = "login">
-                                    <i className="ri-user-line"></i>
-                                </Link>) 
+                            </>):
+                            (<Link to = "login">
+                                <i className="ri-user-line"></i>
+                            </Link>) 
                         }
                     </span>
                 </div>

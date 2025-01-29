@@ -7,7 +7,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
-//TODO middleware setup
+//middleware setup
 app.use(express.json({limit : "25mb"}));
 app.use((express.urlencoded({limit: "25mb"})));
 app.use(cookieParser());
@@ -21,7 +21,12 @@ app.use(cors({
 
 //all routes
 const authRoutes = require('./src/users/user.route');
+//TODO: import product routes
+const productRoutes = require('./src/products/products.route');
+
 app.use('/api/auth', authRoutes);
+//TODO: use product routes
+app.use('/api/products', productRoutes);
 
 
 
