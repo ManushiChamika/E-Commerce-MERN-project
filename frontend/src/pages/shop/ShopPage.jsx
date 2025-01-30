@@ -2,10 +2,12 @@
 
 import React from 'react'
 import { useState } from 'react'
-import productsData from '../../data/products'
-import { useEffect } from 'react'
+// import productsData from '../../data/products'
+// import { useEffect } from 'react'
 import ProductCards from './ProductCards'
 import ShopFiltering from './ShopFiltering'
+import { useFetchAllProductsQuery } from '../../redux/features/products/productsApi'
+
 
 const filter = {
     categories: ['all', 'accessories', 'dress', 'jewelry', 'cosmetics'],
@@ -19,7 +21,7 @@ const filter = {
 }
 
 const ShopPage = () => {
-    const [products, setProducts] = useState(productsData);
+    // const [products, setProducts] = useState(productsData);
     const [filtersState, setFiltersState] = useState({
         category: 'all',
         color: 'all',
@@ -50,9 +52,27 @@ const ShopPage = () => {
     //     setProducts(filteredProducts);
     // }
 
-    useEffect(() => {
-        applyFilters()
-    }, [filtersState])
+    // //TODO: pagination
+    const [currentPage, setCurrentPage] = useState(1);
+    const [ProductsPerPage] = useState(8);
+
+    const { category, color, priceRange} = filtersState;
+    const [minPrice, maxPrice] = priceRange.split('-').map(Number);
+    
+    const {data: {products = [] , totalPages, totalProducts} = {} ,error, isLoading } = useFetchAllProductsQuery({
+        category: category !== 'all' ? category : '',
+        color: color !== 'all' ? color : '',
+        minPrice: isNaN(minPrice) ? '' : minPrice,
+        maxPrice: isNaN(maxPrice) ? '' : maxPrice,
+        page : currentPage,
+        limit :  ProductsPerPage,
+    })
+
+
+
+    // useEffect(() => {
+    //     applyFilters()
+    // }, [filtersState])
 
     //clear the filters
     const clearFilters = () => {
@@ -62,6 +82,11 @@ const ShopPage = () => {
             priceRange: ''
         })
     }
+
+    //tODO: pagination
+    if(isLoading) return <div>Loading...</div>   
+    if(error)return <div>Error loading products</div>
+    
 
     return (
         <>
