@@ -32,8 +32,18 @@ router.post('/create-product', async(req, res)=>{
 //get all products
 router.get('/', async(req, res)=>{
     try {
-        const {category, color, minPrice, maxPrice, page=1, limit =10} = req.query;
+        //filter products
+        const {category,
+               color, 
+               minPrice,
+               maxPrice, 
+               page=1, 
+               limit =10
+        } = req.query;
+
+
         let filter = {};
+
         if(category && category !== 'all'){
             filter.category = category;
         }
@@ -47,6 +57,7 @@ router.get('/', async(req, res)=>{
                 filter.price = {$gte: min, $lte: max};
             }
         }
+        
         const skip = (parseInt(page) - 1) * parseInt(limit);
         const totalProducts = await Products.countDocuments(filter);
         const totalPages= Math.ceil(totalProducts / parseInt(limit));

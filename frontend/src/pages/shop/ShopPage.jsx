@@ -27,29 +27,28 @@ const ShopPage = () => {
     });
 
     //filtering functions
-    const applyFilters = () => {
-        let filteredProducts = productsData;
+    // const applyFilters = () => {
+    //     let filteredProducts = productsData;
 
-        //filter by category
-        if(filtersState.category && filtersState.category !== 'all'){
-            filteredProducts = filteredProducts.filter(product => product.category === filtersState.category);
-        }
+    //     //filter by category
+    //     if(filtersState.category && filtersState.category !== 'all'){
+    //         filteredProducts = filteredProducts.filter(product => product.category === filtersState.category);
+    //     }
 
-        //filter by color
-        if (filtersState.color && filtersState.color !== 'all') {
-            filteredProducts = filteredProducts.filter(
-                product => product.color.toLowerCase() === filtersState.color.toLowerCase()
-            );
-        }
+    //     //filter by color
+    //     if (filtersState.color && filtersState.color !== 'all') {
+    //         filteredProducts = filteredProducts.filter(
+    //             product => product.color.toLowerCase() === filtersState.color.toLowerCase()
+    //         );
+    //     }
         
-
-        //filter by price range
-        if(filtersState.priceRange){
-            const [minPrice , maxPrice] = filtersState.priceRange.split('-').map(Number);
-            filteredProducts = filteredProducts.filter(product => product.price >= minPrice && product.price <= maxPrice);
-        }
-        setProducts(filteredProducts);
-    }
+    //     //filter by price range
+    //     if(filtersState.priceRange){
+    //         const [minPrice , maxPrice] = filtersState.priceRange.split('-').map(Number);
+    //         filteredProducts = filteredProducts.filter(product => product.price >= minPrice && product.price <= maxPrice);
+    //     }
+    //     setProducts(filteredProducts);
+    // }
 
     useEffect(() => {
         applyFilters()
