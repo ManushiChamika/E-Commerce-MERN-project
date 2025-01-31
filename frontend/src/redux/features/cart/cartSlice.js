@@ -39,7 +39,7 @@ const cartSlice = createSlice({
                         }
                     }
                 }
-                return product; // Return the product to ensure the map works
+                return product; 
             });
         
             // Recalculate totals after updating quantities

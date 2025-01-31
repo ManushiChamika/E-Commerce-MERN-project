@@ -34,11 +34,11 @@ const productsApi = createApi({
         }),
 
         //fetch single product
-        fetchProductById : (builder) => builder.query({
+        fetchProductById: builder.query({
             query: (id) => `/${id}`,
-            providesTags: (result, error, id) => [{type: 'products', id}]
+            providesTags: (result, error, id) => [{ type: 'products', id }],
         }),
-
+        
         //add product routes
         AddProduct :  builder.mutation({
             query: (newProduct) => ({
