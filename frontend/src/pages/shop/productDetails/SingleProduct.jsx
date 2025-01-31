@@ -73,7 +73,8 @@ const SingleProduct = () => {
                             e.stopPropagation();
                             handleAddToCart(singleProduct);
                         }}
-                        className='mt-5 px-6 py-2 bg-primary text-white rounded-md hover:bg-primary-dark'>
+                        className="mt-6 py-3 px-4 max-w-[140px] bg-primary text-white rounded-md hover:bg-primary-dark">
+
                         Add to cart
                     </button>                    
                 </div>

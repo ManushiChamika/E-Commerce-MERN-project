@@ -23,10 +23,13 @@ app.use(cors({
 const authRoutes = require('./src/users/user.route');
 //TODO: import product routes
 const productRoutes = require('./src/products/products.route');
+//TODO: import review routes
+const reviewRoutes = require('./src/reviews/reviews.router');
 
 app.use('/api/auth', authRoutes);
 //TODO: use product routes
 app.use('/api/products', productRoutes);
+app.use('/api/reviews', reviewRoutes);
 
 
 
