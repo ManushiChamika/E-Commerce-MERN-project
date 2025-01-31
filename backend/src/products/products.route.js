@@ -66,7 +66,7 @@ router.get('/', async(req, res)=>{
                                        .limit(parseInt(limit))
                                        .populate('author', 'email')
                                        .sort({createdAt: -1});
-        res.status(200).send({products, totalPages});
+        res.status(200).send({products, totalProducts ,totalPages});
     } catch (error) {
         console.error("Error fetching product", error);
         res.status(500).send({message : "Error fetching product"}); 

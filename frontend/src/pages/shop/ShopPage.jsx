@@ -2,7 +2,6 @@
 
 import React from 'react'
 import { useState } from 'react'
-// import productsData from '../../data/products'
 // import { useEffect } from 'react'
 import ProductCards from './ProductCards'
 import ShopFiltering from './ShopFiltering'
@@ -68,8 +67,6 @@ const ShopPage = () => {
         limit :  ProductsPerPage,
     })
 
-
-
     // useEffect(() => {
     //     applyFilters()
     // }, [filtersState])
@@ -87,6 +84,18 @@ const ShopPage = () => {
     if(isLoading) return <div>Loading...</div>   
     if(error)return <div>Error loading products</div>
     
+    const startProduct = (currentPage - 1) * ProductsPerPage + 1;
+    const endProduct = products.length ? startProduct + products.length - 1 : 0;
+
+
+    //TODO: pagination
+    //handle pagination
+    const handlePage = (pageNumber) => {
+        if(pageNumber > 0 && pageNumber <= totalPages ) 
+        {
+            setCurrentPage(pageNumber);
+        }
+    }
 
     return (
         <>
@@ -107,8 +116,39 @@ const ShopPage = () => {
 
                     {/* right side */}
                     <div>
-                        <h3 className='text-xl font-medium mb-4'>Products available : {products.length}</h3>
+                        <h3 className='text-xl font-medium mb-4'>
+                            showing <span className='text-red-500'>{startProduct} to {endProduct}</span>  of {totalProducts} products
+                        </h3>
                         <ProductCards products = {products}/>
+
+                        {/* pagination controls */}
+                        <div className='mt-6 flex justify-center'>
+                        <button 
+                            disabled={currentPage === 1}
+                            onClick={() => handlePage(currentPage - 1)}
+                            className='px-4 py-2 bg-gray-300 text-gray-700 rounded-md mr-2'>
+                            Previous
+                        </button>
+
+                           
+                           {
+                             [...Array(totalPages)].map((_, index) => (
+                                <button 
+                                    disabled={currentPage === index + 1}
+                                    onClick={() => handlePage(index + 1)}
+                                    className={`px-4 py-2 ${currentPage === index + 1 ? 'bg-blue-500 text-white' : 'bg-gray-300 text-gray-700'} rounded-md mx-1`}>
+                                    {index + 1}
+                                </button>
+                            
+                             ))
+           
+                           }
+
+                            <button 
+                                onClick={() => handlePage(currentPage + 1)}
+                                className='px-4 py-2 bg-gray-300 text-gray-700 rounded-md mr-2'>Next
+                            </button>
+                        </div>
                     </div>
                 </div>
             </section>      

@@ -5,7 +5,7 @@ import { getBaseURL } from '../../../utils/baseUtil';
 const productsApi = createApi({ 
     reducerPath: 'productsApi',
     baseQuery : fetchBaseQuery({
-        baseUrl: `${(getBaseURL)}/api/products`
+        baseUrl: `${(getBaseURL())}/api/products`
     }),
     tagTypes: ["products"],
     endpoints : (builder) => ({
