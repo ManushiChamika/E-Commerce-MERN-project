@@ -59,7 +59,33 @@ router.post("/post-review", async (req, res) => {
 })
 
 //get all reviews with count
+router.get("/total-reviews", async (req, res) => {
+    try {
+        const totalReviews = await Reviews.countDocuments({});
+        res.status(200).send({totalReviews});
+    } catch (error) {
+        console.error("Error getting total reviews", error);
+        res.status(500).send({message: "Error getting total reviews"});
+    }
+})
 
-
+//get reviews by user id
+router.get("/:userId", async (req, res) => {
+    const {userId} = req.params;
+    if(!userId){
+        return res.status(400).send({message: "User id is required"});
+    }
+    try {
+        const reviews = await Reviews.find({userId: userId}).sort({createdAt : -1});
+        if(reviews.length === 0){
+            return res.status(404).send({message: "No reviews found"});
+        }
+        res.status(200).send(reviews);
+        
+    } catch (error) {
+        console.error("Error getting reviews", error);
+        res.status(500).send({message: "Error getting reviews"});
+    }
+})
 
 module.exports = router;
