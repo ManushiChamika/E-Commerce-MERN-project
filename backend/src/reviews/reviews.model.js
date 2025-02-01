@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const { Schema, model } = mongoose;
 
 //Product schema and model used in the products route
 const reviewSchema = new mongoose.Schema({
@@ -15,6 +14,4 @@ const reviewSchema = new mongoose.Schema({
 );
 
 const Reviews = mongoose.model("Review", reviewSchema);
-
-
 module.exports = Reviews;
