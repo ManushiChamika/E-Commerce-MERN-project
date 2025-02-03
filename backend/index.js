@@ -25,11 +25,13 @@ const authRoutes = require('./src/users/user.route');
 const productRoutes = require('./src/products/products.route');
 //TODO: import review routes
 const reviewRoutes = require('./src/reviews/reviews.router');
+const orderRoutes = require('./src/orders/order.route');
 
 app.use('/api/auth', authRoutes);
 //TODO: use product routes
 app.use('/api/products', productRoutes);
 app.use('/api/reviews', reviewRoutes);
+app.use('/api/orders', orderRoutes);
 
 
 
