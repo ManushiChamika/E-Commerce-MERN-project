@@ -1,20 +1,35 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { clearCart } from '../../redux/features/cart/cartSlice'
+import { loadStripe } from "@stripe/stripe-js";
+
+
 
 const OrderSummary = () => {
 
     //Without calling dispatch, the clearCart action remains unused, so the Redux state doesn't update.
     //The useDispatch hook provides a way to dispatch actions from components.
     const dispatch = useDispatch();
-
+    //TODO: Get the user related to payments
+    const { user } = useSelector(store => store.auth);
+    // console.log(user);
     const products = useSelector((store) => store.cart.products);
+    console.log(products)
     const {selectedItems, totalPrice, tax, taxRate, grandTotal} = useSelector((store) => store.cart);
    
     const handleClearCart  = () => {
         dispatch(clearCart())
     }
     
+    //TODO: Implement the makePayment function
+    //payment integration
+    const makePayment = async (e) => {
+        //give publishable key here from .env
+        const stripe = await loadStripe(import.meta.env.VITE_STRIPE_PK);
+        console.log(stripe);
+    }
+
+
     return (
     <div className='bg-primary-light mt-5 rounded text-base'>
         <div className='px-6 py-4 space-y-5'>
@@ -34,6 +49,11 @@ const OrderSummary = () => {
                     <i className="ri-delete-bin-6-fill"></i>
                 </button>
                 <button 
+                    // todo
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        makePayment();
+                    }}
                     className="bg-green-500 px-3 py-1.5 text-white mt-2 rounded-md flex justify-between items-center mb-4">
                    <span className='mr-2'> Proceed checkout </span>
                    <i className ="ri-bank-card-fill"></i>

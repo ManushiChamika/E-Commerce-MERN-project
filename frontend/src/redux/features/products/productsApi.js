@@ -51,9 +51,14 @@ const productsApi = createApi({
         }),
 
         //fetch related products
-        fetchRelatedProducts: builder.query({
-            query: (id) => `/related/${id}`,
+        // To this:
+        fetchRelatedProducts: builder.query({ 
+            query: (id) => {
+                console.log("Fetching related products for ID:", id);
+                return `/${id}/related`; 
+            },
         }),
+        
 
         //update product
         updateProduct : builder.mutation({

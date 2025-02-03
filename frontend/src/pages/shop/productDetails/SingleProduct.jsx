@@ -9,17 +9,17 @@ import ReviewsCard from '../reviews/reviewsCard';
 
 const SingleProduct = () => {
 
-    const {id} = useParams();
+    const { id } = useParams();
 
     const dispatch = useDispatch();
 
-    const {data, error, isLoading} = useFetchProductByIdQuery(id);
+    const { data, error, isLoading } = useFetchProductByIdQuery(id);
     
     const singleProduct = data?.product || {};
-    console.log(singleProduct)
+    // console.log(singleProduct)
     
     const productReviews = data?.reviews || [];
-    console.log(productReviews)
+    // console.log(productReviews)
 
     if(isLoading){
         return <p>Loading...</p>

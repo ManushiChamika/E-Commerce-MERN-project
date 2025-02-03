@@ -4,6 +4,7 @@ const Reviews = require('../reviews/reviews.model');
 const router = express.Router();
 const verifyToken = require('../middleware/verifyToken');
 const verifyAdmin = require('../middleware/verifyAdmin');
+const mongoose = require('mongoose');
 
 //post a product
 router.post('/create-product', async(req, res)=>{
@@ -75,20 +76,33 @@ router.get('/', async(req, res)=>{
 })
 
 //get single product
-router.get('/:id', async(req, res)=>{
+router.get('/:id', async (req, res) => {
     try {
         const productId = req.params.id;
-        const product = await Products.findById(productId).populate('author', 'email username');
-        if(!product){
-            return res.status(404).send({message: "Product not found"});
+        console.log("Received Product ID:", productId); // Debugging Log
+
+        // Validate if the ID is a valid MongoDB ObjectId
+        if (!mongoose.Types.ObjectId.isValid(productId)) {
+            console.error("Invalid Product ID:", productId);
+            return res.status(400).send({ message: "Invalid Product ID" });
         }
-        const reviews = await Reviews.find({productId}).populate('userId' ,'username email');
-        res.status(200).send({product, reviews});
+
+        const product = await Products.findById(productId).populate('author', 'email username');
+        if (!product) {
+            console.error("Product Not Found:", productId);
+            return res.status(404).send({ message: "Product not found" });
+        }
+
+        const reviews = await Reviews.find({ productId }).populate('userId', 'username email');
+
+        res.status(200).send({ product, reviews });
     } catch (error) {
-        console.error("Error fetching product", error);
-        res.status(500).send({message : "Error fetching product"});
+        console.error("Error fetching product:", error.message);
+        res.status(500).send({ message: "Error fetching product", error: error.message });
     }
-})
+});
+
+
 
 //update a product
 router.patch('/update-product/:id', verifyToken , verifyAdmin , async(req, res)=>{

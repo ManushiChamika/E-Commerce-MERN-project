@@ -9,7 +9,7 @@ import { logout } from '../redux/features/auth/authSlice';
 const Navbar = () => {
     //using redux to get the products in the cart
     const products = useSelector((state) => state.cart.products);
-    console.log(products);
+    // console.log(products);
     //by default false
     const [isCartOpen, setIsCartOpen] =useState(false);
     //close and open cart

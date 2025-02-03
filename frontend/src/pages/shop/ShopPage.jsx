@@ -2,7 +2,6 @@
 
 import React from 'react'
 import { useState } from 'react'
-// import { useEffect } from 'react'
 import ProductCards from './ProductCards'
 import ShopFiltering from './ShopFiltering'
 import { useFetchAllProductsQuery } from '../../redux/features/products/productsApi'
@@ -27,29 +26,6 @@ const ShopPage = () => {
         priceRange: ''
     });
 
-    //filtering functions
-    // const applyFilters = () => {
-    //     let filteredProducts = productsData;
-
-    //     //filter by category
-    //     if(filtersState.category && filtersState.category !== 'all'){
-    //         filteredProducts = filteredProducts.filter(product => product.category === filtersState.category);
-    //     }
-
-    //     //filter by color
-    //     if (filtersState.color && filtersState.color !== 'all') {
-    //         filteredProducts = filteredProducts.filter(
-    //             product => product.color.toLowerCase() === filtersState.color.toLowerCase()
-    //         );
-    //     }
-        
-    //     //filter by price range
-    //     if(filtersState.priceRange){
-    //         const [minPrice , maxPrice] = filtersState.priceRange.split('-').map(Number);
-    //         filteredProducts = filteredProducts.filter(product => product.price >= minPrice && product.price <= maxPrice);
-    //     }
-    //     setProducts(filteredProducts);
-    // }
 
     // //TODO: pagination
     const [currentPage, setCurrentPage] = useState(1);
@@ -67,9 +43,7 @@ const ShopPage = () => {
         limit :  ProductsPerPage,
     })
 
-    // useEffect(() => {
-    //     applyFilters()
-    // }, [filtersState])
+    
 
     //clear the filters
     const clearFilters = () => {
@@ -134,6 +108,7 @@ const ShopPage = () => {
                            {
                              [...Array(totalPages)].map((_, index) => (
                                 <button 
+                                    key={index}
                                     disabled={currentPage === index + 1}
                                     onClick={() => handlePage(index + 1)}
                                     className={`px-4 py-2 ${currentPage === index + 1 ? 'bg-blue-500 text-white' : 'bg-gray-300 text-gray-700'} rounded-md mx-1`}>
