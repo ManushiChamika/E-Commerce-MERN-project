@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { clearCart } from '../../redux/features/cart/cartSlice'
 import { loadStripe } from "@stripe/stripe-js";
-
+import { getBaseURL } from '../../utils/baseUtil';
 
 
 const OrderSummary = () => {
@@ -22,12 +22,44 @@ const OrderSummary = () => {
     }
     
     //TODO: Implement the makePayment function
-    //payment integration
+    // payment integration
     const makePayment = async (e) => {
-        //give publishable key here from .env
-        const stripe = await loadStripe(import.meta.env.VITE_STRIPE_PK);
-        console.log(stripe);
-    }
+        e.stopPropagation();
+        try {
+          const stripe = await loadStripe(import.meta.env.VITE_STRIPE_PK);
+      
+          const body = {
+            products: products,
+            userId: user?._id
+          };
+      
+          const response = await fetch('http://localhost:5000/api/orders//create-checkout-session', {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(body)
+          });
+      
+          const data = await response.json();
+      
+          if (response.ok) {
+            const result = await stripe.redirectToCheckout({
+              sessionId: data.id
+            });
+      
+            if (result.error) {
+              console.error("Stripe error:", result.error);
+            }
+          } else {
+            console.error("Server error:", data.error);
+            // Display an error message to the user if needed
+          }
+        } catch (error) {
+          console.error("Error:", error);
+        }
+      };
+      
 
 
     return (
@@ -52,7 +84,7 @@ const OrderSummary = () => {
                     // todo
                     onClick={(e) => {
                         e.stopPropagation();
-                        makePayment();
+                        makePayment(e);
                     }}
                     className="bg-green-500 px-3 py-1.5 text-white mt-2 rounded-md flex justify-between items-center mb-4">
                    <span className='mr-2'> Proceed checkout </span>
