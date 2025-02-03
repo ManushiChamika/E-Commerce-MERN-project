@@ -42,20 +42,20 @@ router.post("/create-checkout-session", async (req, res) => {
 
 //confirm payment
 router.post("/confirm-payment", async (req, res) => {
-    const {session_id} = req.body;
+    const { session_id } = req.body;
 
     try {
         const session = await stripe.checkout.sessions.retrieve(session_id, {
-            expand : ["line_items", "payment_intent"]
+            expand: ["line_items", "payment_intent"],
         });
 
         const paymentIntentId = session.payment_intent.id;
-        let order = await Order.findOne({ orderId: paymentIntentId});
+        let order = await Order.findOne({ orderId: paymentIntentId });
 
-        if(!order) {
+        if (!order) {
             const lineItems = session.line_items.data.map((item) => ({
                 productId: item.description,
-                quantity: item.quantity
+                quantity: item.quantity,
             }));
 
             const amount = session.amount_total / 100;
@@ -63,22 +63,25 @@ router.post("/confirm-payment", async (req, res) => {
             order = new Order({
                 orderId: paymentIntentId,
                 amount,
-                products: lineItems,             
+                products: lineItems,
                 email: session.customer_details.email,
-                status: session.payment_intent.status ==  "succeeded" ? "pending" : "failed"
-            })
-        }else {
-            order.status = session.payment_intent.status == "succeeded" ? "pending" : "failed";
+                status: session.payment_intent.status === "succeeded" ? "pending" : "failed",
+            });
+        } else {
+            order.status = session.payment_intent.status === "succeeded" ? "pending" : "failed";
         }
-        await order.save();
-        res.json({order});
 
-        res.status(200).send(session.payment_status);
+        await order.save();
+
+        // Send only one response
+        return res.status(200).json({ order, payment_status: session.payment_status });
+
     } catch (error) {
         console.log("Error confirming payment", error);
-        res.status(500).send({message: "Failed to confirm payment"});
+        return res.status(500).json({ message: "Failed to confirm payment" });
     }
-})
+});
+
 
 
 module.exports = router;
