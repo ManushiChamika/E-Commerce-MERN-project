@@ -26,13 +26,14 @@ const productRoutes = require('./src/products/products.route');
 //TODO: import review routes
 const reviewRoutes = require('./src/reviews/reviews.router');
 const orderRoutes = require('./src/orders/order.route');
+const statsRoutes = require('./src/stats/stats.route')
 
 app.use('/api/auth', authRoutes);
 //TODO: use product routes
 app.use('/api/products', productRoutes);
 app.use('/api/reviews', reviewRoutes);
 app.use('/api/orders', orderRoutes);
-
+app.use('/api/stats', statsRoutes);
 
 
 main().then(()=> console.log("mongo db is successfully connected.")).catch(err => console.log(err));
