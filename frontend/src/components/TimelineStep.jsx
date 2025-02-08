@@ -10,7 +10,7 @@ const TimelineStep = ({ step, order, isCompleted, isCurrent, isLastStep, icon, d
     return (
         <li className='relative mb-6 sm:mb-0 sm:pl-10'>
             <div className='flex items-center'>
-                <div className={`z-10 flex items-center justify-center h-6 w-6 ${iconBgColor} ${iconTextColor} rounded-full ring-white shrink-0`}>
+                <div className={`z-10 flex items-center justify-center h-6 w-6 ${step?.status === 'completed' ? 'bg-green-900 text-green-100' : step?.status === 'pending' ? 'bg-red-700 text-red-100' : step?.status === 'processing' ? 'bg-blue-600 text-blue-100' : 'bg-indigo-400 text-indigo-100'} ${iconTextColor} rounded-full ring-white shrink-0`}>
                     <i className={`ri-${icon.iconName} text-xl`}></i>
                 </div>
                 {!isLastStep && (<div className={`hidden sm:flex w-full h-0.5 ${connectorColor}`}>

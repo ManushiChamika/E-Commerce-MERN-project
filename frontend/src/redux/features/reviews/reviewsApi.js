@@ -27,7 +27,7 @@ export const reviewApi = createApi({
         }),
         getReviewsByUserId: builder.query({
             query: (userId) => ({
-                url: `/user/${userId}`
+                url: `/${userId}`
             }),
             providedTags: (result) => result ? [{type: "Reviews", id:result[0]?.email}] : []
         })        

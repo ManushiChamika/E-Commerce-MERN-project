@@ -39,13 +39,13 @@ const Navbar = () => {
         {label : "Dashboard" , path: "/dashboard/admin"},
         {label : "Manage Items" , path: "/dashboard/manage-products"},
         {label : "All Orders" , path: "/dashboard/manage-orders"},
-        {label : "Add new Post" , path: "/dashboard/add-new-post"},
+        {label : "Add Product" , path: "/dashboard/add-new-product"},
     ]
 
     //TODO:
     //user dropdown menus
     const userDropDownMenus = [
-        {label : "DashBoard" , path: "/dashboard/user"},
+        {label : "DashBoard" , path: "/dashboard/"},
         {label : "Profile" , path: "/dashboard/profile"},
         {label : "Payments" , path: "/dashboard/payments"},
         {label : "Orders" , path: "/dashboard/orders"},

@@ -3,8 +3,6 @@ import { useSelector } from 'react-redux'
 import { Navigate, Outlet } from 'react-router-dom'
 import UserDashboard from './UserDashboard';
 import AdminDashboard from './AdminDashboard';
-// import UserDashboard from './UserDashboard';
-// import AdminDashboard from './AdminDashboard';
 
 const DashboardLayout = () => {
   const {user} = useSelector((state) => state.auth);
@@ -14,8 +12,7 @@ const DashboardLayout = () => {
 
   const renderDashboard = () =>{
     switch (user?.role) {
-      case 'admin':
-        
+      case 'admin':      
         return <AdminDashboard/>
       case 'user': 
         return <UserDashboard/>

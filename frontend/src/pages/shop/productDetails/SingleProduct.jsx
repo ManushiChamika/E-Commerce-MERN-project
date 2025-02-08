@@ -56,7 +56,8 @@ const SingleProduct = () => {
             </div>
             <div className='md:w-1/2 w-full'>
                 <h3 className='text-2xl font-semibold mcb-4'>{singleProduct?.name}</h3>
-                <p className='text-xl text-primary mb-4'>{singleProduct?.price} {singleProduct.oldPrice && <s>${singleProduct.oldPrice}</s>}</p>
+                <p className='text-xl text-primary mb-4'>$
+                    {singleProduct?.price} {singleProduct.oldPrice && <s>${singleProduct.oldPrice}</s>}</p>
                 <p className='text-gray-500 mb-4'>{singleProduct?.description}</p>
            
                 {/* additional product info */}

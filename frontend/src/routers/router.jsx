@@ -10,6 +10,15 @@ import Register from "../components/Register";
 import PaymentSuccess from "../components/PaymentSuccess";
 import DashboardLayout from "../pages/dashboard/DashboardLayout";
 import PrivateRoute from "./PrivateRoute";
+import UserDMain from "../pages/dashboard/user/dashboard/UserDMain";
+import UserOrders from "../pages/dashboard/user/UserOrders";
+import OrderDetails from "../pages/dashboard/user/OrderDetails";
+import UserPayments from "../pages/dashboard/user/UserPayments";
+import UserReviews from "../pages/dashboard/user/userReviews";
+import UserProfile from "../pages/dashboard/user/UserProfile";
+import AdminDMain from "../pages/dashboard/admin/dashboard/AdminDMain";
+import AddProduct from "../pages/dashboard/admin/addProduct/AddProduct";
+
 
 const router = createBrowserRouter([
     {
@@ -39,6 +48,11 @@ const router = createBrowserRouter([
         {
           path: "/success",
           element : <PaymentSuccess/>
+        },
+        {
+          //order details
+          path: "/orders/:orderId",
+          element : <OrderDetails/>
         }
       ],
     },
@@ -56,20 +70,20 @@ const router = createBrowserRouter([
       element: <PrivateRoute><DashboardLayout /></PrivateRoute>, // TODO use private route
       children: [
         //user routes
-        {path : 'user', element : <div>User Dashboard</div>},
-        {path : 'orders', element : <div>User Orders</div>},
-        {path : 'payments', element : <div>User Payments</div>},
-        {path : 'profile', element : <div>User Profile</div>},
-        {path : 'reviews', element : <div>User Reviews</div>},
+        {path : '', element : <UserDMain/>},
+        {path : 'orders', element : <UserOrders/>},
+        {path : 'payments', element : <UserPayments/>},
+        {path : 'profile', element : <UserProfile/>},
+        {path : 'reviews', element : <UserReviews/>},
 
         //admin routes (only accessible to admin) //TODO: use private route
         {
           path : 'admin', 
-          element : <PrivateRoute role="admin"><div>Admin Dashboard</div></PrivateRoute> 
+          element : <PrivateRoute role="admin"><AdminDMain/></PrivateRoute> 
         },
         {
-          path : 'add-new-post', 
-          element : <PrivateRoute role="admin"><div>Add New Post</div></PrivateRoute> 
+          path : 'add-new-product', 
+          element : <PrivateRoute role="admin"><AddProduct/></PrivateRoute> 
         },
         {
           path : 'manage-products',

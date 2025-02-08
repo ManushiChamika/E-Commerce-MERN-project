@@ -1,7 +1,5 @@
 const express = require('express');
 const Order = require('./orders.model');
-const verifyToken = require('../middleware/verifyToken');
-const verifyAdmin = require('../middleware/verifyAdmin');
 const router = express.Router();
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
@@ -97,7 +95,9 @@ router.get("/:email", async (req, res) => {
         if(orders.length === 0 || !orders){
             return res.status(400).send({order: 0, message: "No orders found"});
         }        
-        return res.status(200).json(orders);
+        // Send only one response to frontend
+        return res.status(200).json({orders});
+        
     } catch (error) {
         console.log("Error fetching order by email", error);
         return res.status(500).json({ message: "Failed to fetch order by email" });
