@@ -28,7 +28,6 @@ const opts = {
   resource_type: "auto",
 };
 
-
 module.exports = (image) => {
   //image = > base64
   return new Promise((resolve, reject) => {
